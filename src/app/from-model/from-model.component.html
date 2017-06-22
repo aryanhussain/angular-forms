@@ -1,0 +1,52 @@
+<div class="col-lg-12">
+  <h2 class="ui header">Form with ng-Model</h2>
+
+  
+
+  <form [formGroup]="myForm"
+        (ngSubmit)="onSubmit(myForm.value)"
+        class="ui form ">
+
+    <div class="form-group col-lg-8">
+      <div class="input-group">
+       <span class="input-group-addon "><i class="glyphicon glyphicon-user"></i></span>
+      <div>
+         <input type="text" class="form-control"
+             id="emailInput" email required
+             placeholder="Email"
+             [formControl]="myForm.get('email')"
+             [(ngModel)]="email">
+      </div>
+      </div>
+      <div *ngIf="!myForm.controls['email'].valid"
+         class="alert-danger message">EMAIL is invalid</div>
+       <div *ngIf="myForm.controls['email'].hasError('required')"
+         class="alert-danger message">EMAIL is required</div>
+    </div>
+
+      <div class="form-group col-lg-8">
+        <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+      <div>
+         <input type="text" class="form-control"
+             id="passwordInput" required
+             placeholder="Password"
+             [formControl]="myForm.get('password')"
+             [(ngModel)]="password">
+      </div>
+        </div>
+      <div *ngIf="!myForm.controls['password'].valid"
+         class="alert-danger message">PASSWORD Needs Alteast 8 Character</div>
+       <div *ngIf="myForm.controls['password'].hasError('required')"
+         class="alert-danger message">PASSWORD is required</div>
+    </div>
+
+    <div *ngIf="myForm.valid" class="form-group col-lg-12">        
+      <div class=" col-sm-10">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+
+  </form>
+
+</div>

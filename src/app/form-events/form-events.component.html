@@ -1,0 +1,35 @@
+<div class="col-lg-12">
+  <h2 class="ui header">Form with events(Check console when value changes)</h2>
+  <form [formGroup]="myForm"
+        (ngSubmit)="onSubmit(myForm.value)"
+        class="ui form">
+
+    <div class="field"
+        [class.error]="!sku.valid && sku.touched">
+      <label for="skuInput">SKU</label>
+      <input type="text"
+             class="form-control"
+             id="skuInput" required
+             placeholder="SKU"
+             [formControl]="sku">
+      
+       <div *ngIf="sku.hasError('required')"
+         class="alert-danger message">SKU is required</div>
+    </div>
+
+    <div class="field"
+        [class.error]="!price.valid && price.touched">
+      <label for="priceInput">PRICE</label>
+      <input type="text" required
+             class="form-control"
+             id="priceInput"
+             placeholder="PRICE"
+             [formControl]="price">
+
+       <div *ngIf="price.hasError('required')"
+         class="alert-danger message">PRICE is required</div>
+    </div>
+
+    <button *ngIf="myForm.valid" type="submit" class="btn">Submit</button>
+  </form>
+</div>
